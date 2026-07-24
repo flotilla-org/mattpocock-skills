@@ -24,6 +24,8 @@ The map is an **index**, not a store. It lists the decisions made and points at 
 
 **Where the map, its child tickets, blocking, and frontier queries physically live is tracker-specific.** The issue tracker should have been provided to you. If not, tell the user to run `/setup-matt-pocock-skills`. Consult the tracker doc's "Wayfinding operations" section for how _this_ repo expresses them. If no tracker has been provided, default to the local-markdown tracker.
 
+**How tickets are executed is orchestration-environment-specific.** The same tracker doc may carry a "Wayfinding execution" section describing the repo's own agent-orchestration environment (e.g. dispatching solo-runnable tickets through its dispatcher rather than working them inline, and who performs settlement). When present, it overrides this skill's default of resolving a claimed ticket in the current session. Conversational (grilling) tickets always remain in-session with the human.
+
 ### The map body
 
 The whole map at low resolution, loaded once per session. Open tickets are **not** listed: they are open child issues, found by query.
