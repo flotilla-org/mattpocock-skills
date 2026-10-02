@@ -13,7 +13,7 @@ When exploring the codebase, read `CONTEXT.md` (if it exists) to get a clear men
 
 This skill has you show commands, outputs and captured artifacts. **Redact every secret first**: write `<REDACTED>` in its place. Build loops against env vars, so the credential stays in the environment rather than in what you show. Captured artifacts carry auth headers: quote only the lines that carry the signal.
 
-If the redacted output is not enough to diagnose the bug, say so and ask the user.
+If the redacted output is not enough to diagnose the bug, say so and ask the user for the missing signal. Under an autonomous orchestrator (flotilla) there is no human to ask: do not wait, `flotilla crew stall --reason access --message '<the exact unredacted signal or capture you need, and why the redacted form is insufficient>'` instead.
 
 ## Phase 1: Build a feedback loop
 
@@ -52,7 +52,7 @@ The goal is not a clean repro but a **higher reproduction rate**. Loop the trigg
 
 ### When you genuinely cannot build a loop
 
-Stop and say so explicitly. List what you tried. Ask the user for: (a) access to whatever environment reproduces it, (b) a redacted captured artifact (HAR file, log dump, core dump, screen recording with timestamps), or (c) permission to add temporary production instrumentation. Do **not** proceed to hypothesise without a loop.
+Stop and say so explicitly. List what you tried. Ask the user for: (a) access to whatever environment reproduces it, (b) a redacted captured artifact (HAR file, log dump, core dump, screen recording with timestamps), or (c) permission to add temporary production instrumentation. Under an autonomous orchestrator (flotilla) there is no human to ask, so do not wait on one: `flotilla crew stall --reason access` for (a) or (b), or `flotilla crew stall --reason decision` for (c), with a `--message` naming exactly which of these you need and why. Do **not** proceed to hypothesise without a loop.
 
 ### Completion criterion: a tight loop that goes red
 
