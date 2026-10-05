@@ -32,6 +32,8 @@ Use this template for writing the PR body:
 <optional: potential ramifications of merge>
 ```
 
+When the repository has a pull request template, fill that template and place Summary, Evidence and Merge Danger inside it; keep the template's closing-issue line.
+
 ## Sections
 
 Skip all preambles and keep prose brief. Use the user's domain language from `CONTEXT.md`.
