@@ -16,8 +16,8 @@ convention (the staged skills carry a fork patch that keeps `CONTEXT.md`).
 
 The bucket structure mirrors `skills/`:
 
-- [`engineering/`](./engineering/README.md): engineering skills not staged to crews (tdd, code-review, the spec/ticket/triage flows, grill-with-docs, implement-spec, pr, setup, ask-matt, wizard, improve-codebase-architecture).
-- [`productivity/`](./productivity/README.md): grilling and the grill-* family, handoff, teach, writing-for-agents and more.
+- [`engineering/`](./engineering/README.md): engineering skills not staged to crews (tdd, code-review, the spec/ticket/triage flows, grill-with-docs, implement-spec, setup, ask-matt, wizard, improve-codebase-architecture).
+- [`productivity/`](./productivity/README.md): grilling and the grill-* family, handoff, teach and more.
 - [`in-progress/`](./in-progress/README.md): upstream's beta channel.
 - `misc/`: rarely-used, non-promoted skills.
 - `deprecated/`: retired, kept as an empty bucket for history.

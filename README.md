@@ -183,7 +183,7 @@ Software engineering fundamentals matter more than ever. These skills are my bes
 
 ## Reference
 
-> **Flotilla fork note.** This is a private fork of [`mattpocock/skills`](https://github.com/mattpocock/skills). Flotilla stages every `SKILL.md` found recursively under `skills/` into every autonomous crew, which run with no interactive human. To keep that staged surface tight, only the crew-relevant skills live under `skills/`; everything else moved to [`unstaged/`](./unstaged/README.md) (same bucket structure) and is still installable by hand. **Staged (`skills/`):** `implement`, `wayfinder`, `retro`, `prototype`, `diagnosing-bugs`, `research`, `domain-modeling`, `codebase-design`. Links below point at each skill's real location. The staged skills also carry two fork patches: the `CONTEXT.md` convention (upstream renamed it to `GLOSSARY.md`) and human-wait gates mapped to `flotilla crew stall`.
+> **Flotilla fork note.** This is a private fork of [`mattpocock/skills`](https://github.com/mattpocock/skills). Flotilla stages every `SKILL.md` found recursively under `skills/` into every autonomous crew, which run with no interactive human. To keep that staged surface tight, only the crew-relevant skills live under `skills/`; everything else moved to [`unstaged/`](./unstaged/README.md) (same bucket structure) and is still installable by hand. **Staged (`skills/`):** `implement`, `wayfinder`, `retro`, `prototype`, `diagnosing-bugs`, `research`, `domain-modeling`, `codebase-design`, `pr`, `writing-for-agents`. Links below point at each skill's real location. The staged skills also carry two fork patches: the `CONTEXT.md` convention (upstream renamed it to `GLOSSARY.md`) and human-wait gates mapped to `flotilla crew stall`.
 
 These split on one axis: who can invoke them. **User-invoked** skills are reachable only when you type them (e.g. `/grill-me`); their job is to orchestrate. **Model-invoked** skills can be invoked by you _or_ reached for automatically by the agent when the task fits; they hold the reusable discipline. A user-invoked skill may invoke model-invoked skills, but never another user-invoked one.
 
@@ -214,7 +214,7 @@ Skills I use daily for code work.
 - **[domain-modeling](./skills/engineering/domain-modeling/SKILL.md)**: Actively build and sharpen a project's domain model: challenge terms against the glossary, stress-test with edge-case scenarios, and update `GLOSSARY.md` and ADRs inline.
 - **[codebase-design](./skills/engineering/codebase-design/SKILL.md)**: Shared discipline and vocabulary for designing deep modules: a lot of behaviour behind a small interface, placed at a clean seam, testable through that interface.
 - **[code-review](./unstaged/engineering/code-review/SKILL.md)**: Two-axis review of the diff since a fixed point: **Standards** (does it follow the repo's coding standards, plus a Fowler smell baseline?) and **Spec** (does it faithfully implement the originating issue/spec?), run as parallel sub-agents so neither pollutes the other.
-- **[pr](./unstaged/engineering/pr/SKILL.md)**: The shape a pull request body should take: a summary as the smallest visual that makes the change clear, before/after evidence that it works, and a merge-danger call (one-way or two-way door, plus blast radius).
+- **[pr](./skills/engineering/pr/SKILL.md)**: The shape a pull request body should take: a summary as the smallest visual that makes the change clear, before/after evidence that it works, and a merge-danger call (one-way or two-way door, plus blast radius).
 - **[wizard](./unstaged/engineering/wizard/SKILL.md)**: Generate an interactive bash wizard that walks a human through steps only they can perform: provisioning infrastructure, setting up credentials or CI secrets, walking an unfamiliar third-party dashboard, or running a one-off migration or cutover.
 
 ### Productivity
@@ -232,4 +232,4 @@ General workflow tools, not code-specific.
 **Model-invoked**
 
 - **[grilling](./unstaged/productivity/grilling/SKILL.md)**: Interview the user relentlessly about a plan, decision, or idea until every branch of the design tree is resolved. The reusable interview primitive behind `grill-me`, `grill-with-docs`, `triage`, `wayfinder` and `improve-codebase-architecture`.
-- **[writing-for-agents](./unstaged/productivity/writing-for-agents/SKILL.md)**: Writing documents for agents: skills, AGENTS.md/CLAUDE.md, and any doc an agent reaches by a pointer.
+- **[writing-for-agents](./skills/productivity/writing-for-agents/SKILL.md)**: Writing documents for agents: skills, AGENTS.md/CLAUDE.md, and any doc an agent reaches by a pointer.

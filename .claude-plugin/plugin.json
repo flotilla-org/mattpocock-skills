@@ -27,6 +27,8 @@
     "./skills/engineering/research",
     "./skills/engineering/domain-modeling",
     "./skills/engineering/codebase-design",
+    "./skills/engineering/pr",
+    "./skills/productivity/writing-for-agents",
     "./unstaged/engineering/ask-matt",
     "./unstaged/engineering/grill-with-docs",
     "./unstaged/engineering/triage",
@@ -37,14 +39,12 @@
     "./unstaged/engineering/to-tickets",
     "./unstaged/engineering/implement-spec",
     "./unstaged/engineering/code-review",
-    "./unstaged/engineering/pr",
     "./unstaged/engineering/wizard",
     "./unstaged/productivity/grill-me",
     "./unstaged/productivity/grilling",
     "./unstaged/productivity/handoff",
     "./unstaged/productivity/teach",
     "./unstaged/productivity/to-questionnaire",
-    "./unstaged/productivity/wait-what",
-    "./unstaged/productivity/writing-for-agents"
+    "./unstaged/productivity/wait-what"
   ]
 }
