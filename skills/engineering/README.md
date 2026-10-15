@@ -11,7 +11,7 @@ installable by hand.
 Reachable only when you type them (Claude Code: `disable-model-invocation: true`; Codex: `policy.allow_implicit_invocation: false` in `agents/openai.yaml`).
 
 - **[implement](./implement/SKILL.md)**: Build the work described by a spec or set of tickets, driving `/tdd` at pre-agreed seams. No local review pass: CI review plus the pr-shepherd loop is the arbiter (flotilla fork patch).
-- **[wayfinder](./wayfinder/SKILL.md)**: Plan a huge chunk of work (more than one agent session can hold) as a shared map of decision tickets on the issue tracker, resolved one at a time until the way to the destination is clear.
+- **[wayfinder](./wayfinder/SKILL.md)**: Carry a huge chunk of work (more than one agent session can hold) as a mission on the issue tracker: decide what the next piece of building needs, build it, learn from it, and finish when the outcome is seen working.
 - **[retro](./retro/SKILL.md)**: Suggest improvements to the coding agent's environment (navigation, automated checks, coding standards, steering files, tooling) after a session, most severe first.
 
 ## Model-invoked

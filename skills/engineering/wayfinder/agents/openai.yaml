@@ -1,5 +1,5 @@
 interface:
   display_name: "Wayfinder"
-  short_description: "Map a large effort as decision tickets"
+  short_description: "Carry a large effort as a mission: decide just in time, build, learn"
 policy:
   allow_implicit_invocation: false
