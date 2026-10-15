@@ -15,7 +15,7 @@ Reach for it when the build is too big for one agent [session](https://www.aiher
 | You haven't decided anything yet | [grill-with-docs](https://aihero.dev/skills-grill-with-docs) first |
 | Decided, and the work fits one [context window](https://www.aihero.dev/ai-coding-dictionary/context-window) | [implement](https://aihero.dev/skills-implement): skip the spec |
 | Decided, and the work spans several sessions | `/to-spec`, then [to-tickets](https://aihero.dev/skills-to-tickets) |
-| A [wayfinder](https://aihero.dev/skills-wayfinder) map has cleared | `/to-spec #<map_issue>` |
+| One step of a [wayfinder](https://aihero.dev/skills-wayfinder) mission is too big for a single build ticket | `/to-spec` for that step, attached to the mission |
 
 ## Prerequisites
 
@@ -44,8 +44,8 @@ The label means "no further triage needed": the document is complete enough for 
 **Why not go straight from grilling to `/to-tickets` and skip the spec?**
 Often you should. The spec is worth its step only on multi-session work. Its value is that the tickets are disposable and the spec is not. Each ticket is sized for one fresh context window and then gets deleted or closed, while the spec stays as the one place that records the reasoning behind them. On a single-session change, that gives you nothing, and you pay for an extra synthesis step where the [model](https://www.aihero.dev/ai-coding-dictionary/model) can drift. Go from grilling to `/implement`.
 
-**I just finished a wayfinder map. What do I feed it?**
-Give it the main map issue, `/to-spec #<map_issue>`, not the individual decision tickets. [wayfinder](https://aihero.dev/skills-wayfinder) produces decisions spread across a map, not deliverables. `to-spec` collapses them into one document you can build from. If you loop the map straight into `/implement`, you lose that step.
+**How does this fit with a wayfinder mission?**
+A [wayfinder](https://aihero.dev/skills-wayfinder) mission carries its own building, one step at a time, so you don't collapse a whole mission into one spec. Reach for `to-spec` when a single step's decisions are settled and the step is too big for one build ticket. Feed it the decision tickets that step rests on, and attach the resulting tickets to the mission.
 
 **Is the spec for me to review, or is it just for the agent?**
 Mostly for the agent, and it reads that way: complete, dense, and full of references. Read the seams and the out-of-scope section. In those two places, a wrong decision is cheapest to catch now and most expensive to find later. People do complain about reading the whole thing, and there is no summary mode. But if the spec surprises you, the grilling was too shallow; the spec is not too long.
@@ -78,4 +78,4 @@ A tracker issue may not return a very large spec in full, and there is no local 
 grill-with-docs → to-spec → to-tickets → implement → code-review → retro
 ```
 
-Upstream, [grill-with-docs](https://aihero.dev/skills-grill-with-docs) makes the decisions that this skill only records, and a finished [wayfinder](https://aihero.dev/skills-wayfinder) map joins the chain here. Downstream, [to-tickets](https://aihero.dev/skills-to-tickets) cuts the spec into tracer-bullet tickets for [implement](https://aihero.dev/skills-implement) to build. When you're unsure which skill or flow fits, [ask-matt](https://aihero.dev/skills-ask-matt) routes you.
+Upstream, [grill-with-docs](https://aihero.dev/skills-grill-with-docs) makes the decisions that this skill only records, and a [wayfinder](https://aihero.dev/skills-wayfinder) mission can call on it for one step that needs a spec. Downstream, [to-tickets](https://aihero.dev/skills-to-tickets) cuts the spec into tracer-bullet tickets for [implement](https://aihero.dev/skills-implement) to build. When you're unsure which skill or flow fits, [ask-matt](https://aihero.dev/skills-ask-matt) routes you.

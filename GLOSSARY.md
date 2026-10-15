@@ -10,10 +10,17 @@ _Avoid_: backlog manager, backlog backend, issue host
 
 **Issue**:
 A single tracked unit of work inside an **Issue tracker**: a bug, task, spec, or slice produced by `to-tickets`.
-_Avoid_: ticket (use only when quoting external systems that call them tickets, or for a **Decision ticket**, see below)
+_Avoid_: ticket (use only when quoting external systems that call them tickets, or for a **Decision ticket** or **Build ticket**, see below)
+
+**Mission**:
+A `wayfinder` effort: one **Issue** labelled `wayfinder:map` that names a working outcome and how anyone can see it works. Its child **Issues** are the **Decision tickets** and **Build tickets** that reach it. It is done when the outcome is seen working, not when it is fully specified.
+_Avoid_: plan, epic, roadmap
 
 **Decision ticket**:
-A `wayfinder` unit: a child **Issue** of a `wayfinder:map` holding a *question* whose resolution is a decision, not a slice of a build to execute. The **decision** qualifier is what keeps it distinct from an implementation ticket; `wayfinder` introduces the term, then uses "ticket".
+A child **Issue** of a **Mission** holding a *question* whose resolution is a decision that a coming build step waits on. It is written within the **Mission**'s planning horizon, and reopened when building or outside change shows it wrong.
+
+**Build ticket**:
+A child **Issue** of a **Mission** for a slice of the outcome. A ready one is a contract written from the decisions it rests on and the code as it stands; a planned one is an outline written a few steps ahead, refreshed into a contract when it reaches the front. Its landing is followed by a learn pass that updates the **Mission**.
 
 **Triage role**:
 A canonical state-machine label applied to an **Issue** during triage (e.g. `needs-triage`, `ready-for-afk`). Each role maps to a real label string in the **Issue tracker** via `docs/agents/triage-labels.md`.
@@ -22,7 +29,8 @@ A canonical state-machine label applied to an **Issue** during triage (e.g. `nee
 
 - An **Issue tracker** holds many **Issues**
 - An **Issue** carries one **Triage role** at a time
-- A **Decision ticket** is an **Issue** (a child of a `wayfinder:map`)
+- A **Mission** is an **Issue** labelled `wayfinder:map`
+- **Decision tickets** and **Build tickets** are child **Issues** of a **Mission**
 
 ## Flagged ambiguities
 
