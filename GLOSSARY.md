@@ -17,10 +17,10 @@ A `wayfinder` effort: one **Issue** labelled `wayfinder:map` that names a workin
 _Avoid_: plan, epic, roadmap
 
 **Decision ticket**:
-A child **Issue** of a **Mission** holding a *question* whose resolution is a decision that a coming build step waits on. It is written just before that step needs it, never further ahead.
+A child **Issue** of a **Mission** holding a *question* whose resolution is a decision that a coming build step waits on. It is written within the **Mission**'s planning horizon, and reopened when building or outside change shows it wrong.
 
 **Build ticket**:
-A child **Issue** of a **Mission** holding the contract for the next slice of the outcome, written from the decisions it rests on and the code as it stands. Its landing is followed by a learn pass that updates the **Mission**.
+A child **Issue** of a **Mission** for a slice of the outcome. A ready one is a contract written from the decisions it rests on and the code as it stands; a planned one is an outline written a few steps ahead, refreshed into a contract when it reaches the front. Its landing is followed by a learn pass that updates the **Mission**.
 
 **Triage role**:
 A canonical state-machine label applied to an **Issue** during triage (e.g. `needs-triage`, `ready-for-afk`). Each role maps to a real label string in the **Issue tracker** via `docs/agents/triage-labels.md`.

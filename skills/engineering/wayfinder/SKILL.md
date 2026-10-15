@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 A loose idea has arrived, too big for one agent session, and wrapped in fog: the way from here to the **destination** isn't visible yet. This skill carries that effort as a **mission**: one issue on the repo's tracker that names a working outcome, and whose child tickets are the decisions and the build that get there. It is done when the outcome is seen working. A complete specification is never the finish line, because specifications are never quite right until something is built against them.
 
-Building teaches what grilling can't. The mission therefore decides only what the next piece of building needs, builds it, and then folds what the building revealed back into the mission before deciding the next step.
+Building teaches what grilling can't, and the code around the mission keeps moving. The mission therefore plans a few steps ahead, in detail that fades with distance, builds the nearest step, and replans from what the building revealed and from what changed around it. Planning is never final; replanning is the normal way a mission moves.
 
 ## Refer by name
 
@@ -45,9 +45,10 @@ The whole mission at low resolution, loaded once per session. Open tickets are *
 
 ## Landed and learned
 
-<!-- one line per landed piece of building: what now works, and what building it taught -->
+<!-- one line per landed piece of building, and per outside change that moved the plan -->
 
 - [<build ticket or change title>](link): <what works now>. Learned: <what turned out differently, or "as expected">
+- Elsewhere: [<outside change>](link): <what it changed for this mission>
 
 ## Not yet specified
 
@@ -70,7 +71,7 @@ Each ticket is a **child issue** of the mission; the tracker's issue id is its i
   <the decision or investigation this ticket resolves, and the build step that waits on it>
   ```
 
-- A **build** ticket's body is the contract the repo's dispatch expects: what the next piece of building delivers, how it is checked, and what is out of scope. It is written from the decisions it rests on and the code as it stands now.
+- A **build** ticket's body is the contract the repo's dispatch expects: what the next piece of building delivers, how it is checked, and what is out of scope. A **ready** build ticket is written from the decisions it rests on and the code as it stands now. A **planned** build ticket is an outline written further ahead; it is refreshed against the code and marked ready before anyone starts it (see [Planning horizon](#planning-horizon)).
 
 A session **claims** a ticket by assigning it to the dev driving the mission, **first**, before any work, so concurrent sessions skip it. That assignee _is_ the claim: an open, unassigned ticket is unclaimed.
 
@@ -88,19 +89,28 @@ Every ticket is either **HITL** (human in the loop, worked _with_ a human who sp
 - **Grilling** (HITL): Conversation. Call the Skill tool twice, for "grilling" and "domain-modeling".
 - **Task** (HITL or AFK): Manual work a decision or a build step waits on (provisioning access, signing up for a service, moving data so its shape can be seen). The agent drives it alone where it can; otherwise it hands the human a precise checklist. The answer records what was done and the facts later tickets depend on.
 
-## Just in time
+## Planning horizon
 
-A ticket earns its place by serving the **next** piece of building. Write a decision ticket when a build step is waiting on that answer; write a build ticket when the decisions and the code it rests on exist. Everything further ahead stays in **Not yet specified**, however sharply it could be phrased today, because the building in between will change the question.
+Plan the way a controller steers: look a few steps ahead, act on the nearest one, then measure where you are and plan again. Detail fades with distance.
 
-Keep the frontier short: the next build step or two, and the decisions they wait on. When a grill reaches past that horizon, record the thought in **Not yet specified** and return to the next step.
+- **Ready**: the next build step or two. Their decisions are settled, and each build ticket is a contract written against the code as it stands now. Building can start.
+- **Planned**: the few steps after that. Write them as tickets when seeing them makes the near steps safer or clearer: the order of work, the seams the near steps must leave room for, the decisions worth settling early. A planned ticket is an outline and a working assumption. Mark it planned the way the tracker doc says, and refresh it into a ready ticket when it reaches the front.
+- **Fog**: everything further out stays loose in **Not yet specified**. Planning it in detail now is wasted, because it may be irrelevant by the time building gets there.
 
-Decisions are working assumptions. When building shows one is wrong, reopen it or supersede it with a new decision ticket, and say so in **Landed and learned**.
+Plan ahead as far as it reduces risk, and no further. When a grill starts settling the detail of work several steps past the planned horizon, record the thought in **Not yet specified** and return to the near steps.
+
+Decisions and plans are working assumptions. Revisit them whenever the picture changes:
+
+- **After a landing**: what the building revealed.
+- **When the surroundings change**: other work landing in the codebase, a dependency or tool in the stack changing, another mission's decision, a fact the team learns elsewhere.
+
+When one is wrong, reopen or supersede the decision, rewrite or close the planned tickets it fed, and say why in **Landed and learned**.
 
 ## Fog of war
 
-The mission is _deliberately_ incomplete. Beyond the frontier lies the **fog of war**: work and questions you can tell are coming, written down loosely in **Not yet specified**. That section is everything in scope that the next build step doesn't need yet. Write as loosely or as fully as the view allows; it signposts where the effort is headed for collaborators.
+The mission is _deliberately_ incomplete. Beyond the planned horizon lies the **fog of war**: work and questions you can tell are coming, written down loosely in **Not yet specified**. Write as loosely or as fully as the view allows; it signposts where the effort is headed for collaborators.
 
-A patch of fog **graduates** into tickets when the building reaches it: when a landing makes its prerequisites real, or when the next build step turns out to wait on it. One patch may graduate into several tickets, or none.
+A patch of fog **graduates** into tickets when the planning horizon reaches it: when a landing brings it a few steps closer, or when a near step turns out to depend on it. One patch may graduate into several tickets, or none.
 
 **Not yet specified** excludes what's already decided (Decisions so far), what's landed (Landed and learned), what's already a live ticket, and what's out of scope.
 
@@ -119,9 +129,9 @@ Two modes. Resolve at most one HITL ticket per session; AFK tickets (research, b
 User invokes with a loose idea.
 
 1. **Name the destination.** Call the Skill tool twice, for "grilling" and "domain-modeling", to pin down the working outcome and how anyone will see that it works. The destination fixes the scope, so it's settled first.
-2. **Find the first step.** Grill breadth-first just far enough to see the whole space and the **first piece of building** that can start now, together with the decisions it waits on. **If no fog remains** (the journey is small enough for one session), you don't need a mission. Stop and ask the user how they'd like to proceed.
+2. **Find the first step.** Grill breadth-first just far enough to see the whole space and the **first piece of building** that can start now, together with the decisions it waits on, and the few steps after it that are worth planning now. **If no fog remains** (the journey is small enough for one session), you don't need a mission. Stop and ask the user how they'd like to proceed.
 3. **Create the mission** (label `wayfinder:map`): Destination, Notes and Priority filled in; Decisions so far and Landed and learned empty; the rest of the space sketched loosely into **Not yet specified**.
-4. **Create only the first step's tickets** as child issues: the first build ticket (or its precursor research, prototype or task), plus the decision tickets it waits on. Wire blocking edges in a **second pass**, once the issues have ids.
+4. **Create the horizon's tickets** as child issues: the first build ticket (or its precursor research, prototype or task) and the decisions it waits on as ready, and the steps after it as planned. Wire blocking edges in a **second pass**, once the issues have ids.
 5. **Fire the research subagents** for any `research` ticket just created, capturing findings on a throwaway `research/<name>` branch with a context pointer from the ticket.
 6. Stop. Charting is one session's work; it resolves no HITL ticket.
 
@@ -131,17 +141,18 @@ User invokes with a mission (URL or number). A ticket is **optional**: without o
 
 1. Load the **mission**: the low-res view, not every ticket body.
 2. Choose the move, in this order:
-   1. **Learn from a landing.** If a build ticket has landed since its last learn pass, do that pass first (step 5).
-   2. **Start building.** If a build ticket is unblocked and unclaimed, hand it to the repo's build path (the tracker doc's "Wayfinding execution"), claiming it.
+   1. **Learn and replan.** If a build ticket has landed, or the surroundings have changed, since the last learn pass, do that pass first (step 5).
+   2. **Start building.** If a ready build ticket is unblocked and unclaimed, hand it to the repo's build path (the tracker doc's "Wayfinding execution"), claiming it.
    3. **Decide what building waits on.** Otherwise take the frontier decision ticket that unblocks the nearest build step, and claim it.
-   4. **Graduate the next step.** If the frontier is empty and the destination isn't yet seen working, graduate the fog the next build step needs into tickets.
+   4. **Refresh or extend the horizon.** If nothing is ready, refresh the nearest planned ticket against the code and mark it ready; if nothing is planned and the destination isn't yet seen working, graduate the fog nearest the building into tickets.
 3. Resolve a decision ticket. **Zoom as needed**: fetch the full body of related or closed tickets on demand; call the Skill tool for whichever skills `## Notes` names. If in doubt, call the Skill tool twice, for "grilling" and "domain-modeling". Post the answer as a **resolution comment**, **close** the issue, and append a pointer to **Decisions so far**.
 4. Write the build ticket the answer unblocked, if its other prerequisites exist, from the decisions and the code as it is now.
-5. **Learn pass**, after each landing:
-   - Append the landing to **Landed and learned**: what works now, and what building it taught.
-   - Revisit earlier decisions the building contradicted: reopen or supersede them.
-   - Graduate fog that the landing made real into tickets, and clear it from **Not yet specified**.
-   - Thin anything ticketed ahead of its prerequisites back into fog.
+5. **Learn pass**, after each landing and whenever the surroundings change:
+   - Append any landing to **Landed and learned**: what works now, and what building it taught.
+   - Check what changed around the mission since the last pass: other merged work in the codebase, the stack and tools it depends on, other missions' decisions. Note anything that bears on this mission.
+   - Revisit the decisions and planned tickets those changes contradict: reopen or supersede the decisions, rewrite or close the planned tickets.
+   - Re-extend the horizon: graduate fog that is now a few steps away into tickets, and clear it from **Not yet specified**.
+   - Thin anything planned in more detail than its distance warrants back into an outline or into fog.
 6. **Close the mission** when the destination's check is seen working: record the observation (link, demo, or run) on the mission, then close it.
 
 The user may run unblocked tickets in parallel, so expect other sessions to be editing the tracker concurrently.

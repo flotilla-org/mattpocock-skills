@@ -1,5 +1,5 @@
 interface:
   display_name: "Wayfinder"
-  short_description: "Carry a large effort as a mission: decide just in time, build, learn"
+  short_description: "Carry a large effort as a mission: plan a few steps ahead, build, replan"
 policy:
   allow_implicit_invocation: false
